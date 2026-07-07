@@ -71,6 +71,40 @@ Full methodology + code: [repo link]
 
 ---
 
+## Version D — the two-tournament / historical-record angle (strongest evidence)
+
+I tested the "referees favor Argentina" theory the right way: **Argentina in 2022 + 2026 as
+the subject, all of World Cup history as the control.** Here's what held up. 🧵
+
+**1. They hold the all-time record.** Argentina were awarded **5 penalties at the 2022 World
+Cup — the most EVER given to one team in a single tournament.** In ~90 years, no team had ever
+topped 4. That's not "high." That's the 100th percentile of every team in World Cup history.
+
+**2. It's statistically real.** Against the VAR-era baseline (~0.2 penalties/team/game),
+Argentina's 2022 haul is **3.5× expected, p = 0.015.** Not a coincidence.
+
+**3. It didn't stop in 2026.** They've already drawn ≥2 penalties in 5 games — ~2× the baseline
+again. On its own the 2026 sample is too small to be significant (p = 0.27), but **pool both
+tournaments and it holds: 2.9× expected, p = 0.013.**
+
+Now the part that keeps me honest — and makes the story better:
+
+**In 2026, Messi MISSED both penalties** — the first player ever to miss two in a single World
+Cup. So "Argentina gets the calls" looks real. But "Argentina always benefits"? The data says
+no. And in 2022 the same refs booked them 16 times in 7 games — the most-carded team in the
+tournament.
+
+My actual conclusion: the penalty pattern is a **genuine statistical anomaly** worth talking
+about. But significance ≠ intent — elite, possession-heavy teams that attack the box draw
+penalties. The data flags something real. It doesn't prove a conspiracy. Anyone claiming
+certainty in either direction is overselling.
+
+Code, data, and every source in the repo 👇
+
+#DataScience #WorldCup #SportsAnalytics #Statistics #Football
+
+---
+
 ## Version C — the one-liner hook (for the top of the post)
 
 > Argentina won 21.7% of ALL the penalties at the 2022 World Cup — 5 of 23, as 1 of 32

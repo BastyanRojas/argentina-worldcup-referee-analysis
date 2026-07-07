@@ -52,9 +52,27 @@ The penalty-frequency outlier is real and worth discussing. It is **not**, on it
 proof that referees favored Argentina. The defensible claim is narrow and true; the
 sweeping claim is neither. Keep the post on the narrow one.
 
+## Second analysis: subject vs. historical baseline (`baseline_comparison.py`)
+
+A stronger framing that treats **Argentina in 2022 + 2026 as the subject** and **the rest of
+World Cup history as the control**:
+
+- **Rate lens.** Compare Argentina's penalties-per-game to the pooled **VAR-era** baseline
+  (2018 + 2022 = 52 penalties over 256 team-matches = 0.203/team-match). Using the modern,
+  multi-tournament rate is deliberately conservative — it is a *higher* bar than the 2022-only
+  rate, so it makes Argentina look *less* extreme, not more. 2022 still clears it
+  (3.5×, p = 0.015); 2026 alone does not (small sample); pooled does (2.9×, p = 0.013).
+- **Record lens.** Place Argentina in the all-time distribution of "most penalties to one team
+  in a single World Cup." Their 5 (2022) is the outright record; the prior max was 4. This is a
+  distribution-free statement — no model assumptions — and it is the single most persuasive fact.
+
+The two lenses agree, which matters: a parametric test and a raw historical ranking both put
+2022 in the extreme tail.
+
 ## To strengthen this further (open TODOs)
 
-- Pull all 32 teams' penalty counts and run the test across the full field with a
-  multiple-comparisons correction.
+- Pull all 32 teams' 2022 penalty counts for a full within-tournament permutation test with a
+  multiple-comparisons correction (the current record lens uses only the tail).
 - Add an exposure model based on box touches / shots, not just games played.
-- Backfill 2026 with verified, final numbers once the tournament concludes.
+- Backfill 2026 with verified, final numbers once the tournament concludes (counts here are a
+  provisional minimum).

@@ -9,7 +9,7 @@ It deliberately ALSO reports the evidence that cuts the other way (cards drawn,
 penalties conceded), because a one-sided analysis is not a credible one.
 
 Run:  python src/analyze.py
-Outputs: figures/*.png and reports/FINDINGS.md
+Outputs: figures/*.png and reports/legacy/FINDINGS.md
 """
 
 from pathlib import Path
@@ -25,7 +25,8 @@ import matplotlib.pyplot as plt
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 FIG = ROOT / "figures"
-REPORTS = ROOT / "reports"
+REPORTS = ROOT / "reports" / "legacy"
+REPORTS.mkdir(parents=True, exist_ok=True)
 FIG.mkdir(exist_ok=True)
 REPORTS.mkdir(exist_ok=True)
 
@@ -113,7 +114,9 @@ def main():
         "not a vibe.\n"
         "- It **does not**, by itself, prove intent or bias — an outlier can be produced by "
         "style of play, deep tournament runs, and small samples. That distinction is the "
-        "difference between a credible post and a conspiracy screenshot.\n"
+        "difference between a credible post and a conspiracy screenshot. (Bias *as a "
+        "behavioral asymmetry in decisions* — distinct from intent — IS empirically testable "
+        "with stronger designs: see `reports/BIAS_IDENTIFICATION.md`.)\n"
     )
 
     (REPORTS / "FINDINGS.md").write_text("".join(lines))
@@ -159,7 +162,7 @@ def main():
     fig.savefig(FIG / "full_picture.png", dpi=150)
     plt.close(fig)
 
-    print(f"\nWrote reports/FINDINGS.md and 3 figures to figures/.")
+    print(f"\nWrote reports/legacy/FINDINGS.md and 3 figures to figures/.")
 
 
 if __name__ == "__main__":

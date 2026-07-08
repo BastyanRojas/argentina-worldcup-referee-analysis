@@ -2,3 +2,14 @@
 __pycache__/
 *.pyc
 .DS_Store
+
+# LaTeX build artifacts (keep main.tex and main.pdf)
+latex/*.aux
+latex/*.log
+latex/*.out
+latex/*.fls
+latex/*.fdb_latexmk
+latex/*.synctex.gz
+latex/*.toc
+latex/*.bbl
+latex/*.blg

@@ -12,7 +12,7 @@ Two independent lenses:
      "most penalties awarded to a single team in one World Cup"?
 
 Run:  python src/baseline_comparison.py
-Outputs: figures/*.png and reports/BASELINE_FINDINGS.md
+Outputs: figures/*.png and reports/legacy/BASELINE_FINDINGS.md
 """
 
 from pathlib import Path
@@ -27,7 +27,8 @@ import matplotlib.pyplot as plt
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 FIG = ROOT / "figures"
-REPORTS = ROOT / "reports"
+REPORTS = ROOT / "reports" / "legacy"
+REPORTS.mkdir(parents=True, exist_ok=True)
 FIG.mkdir(exist_ok=True)
 REPORTS.mkdir(exist_ok=True)
 
@@ -131,15 +132,15 @@ def main():
         "team-tournament ever recorded. Empirically, that is the 100th percentile.\n"
     )
 
-    L.append("## The 2026 twist (and why it matters for honesty)\n")
+    L.append("## 2026 (provisional): the award rate held\n")
     L.append(
-        f"- Argentina were awarded ~{int(a26.pens_for)} penalties in their first {int(a26.games)} "
-        "games of 2026 — but **Messi missed both**, becoming the first player to miss two "
-        "penalties in a single World Cup.\n"
-        "- This cleanly separates two claims people conflate: **'Argentina gets the calls'** "
-        "(the awards suggest: yes, again) vs **'Argentina always benefits'** (2026 says: not "
-        "automatically — they fluffed both). A rigging narrative that ignores the misses is "
-        "dishonest.\n"
+        f"- Argentina were **awarded ~{int(a26.pens_for)} penalties** in their first {int(a26.games)} "
+        "games of 2026 — the same above-baseline *award* rate, which is the variable this analysis "
+        "tests.\n"
+        "- Both were missed by Messi (a World Cup first), but **conversion is downstream of the "
+        "referee's whistle** — it depends on the taker and the keeper, not the officials. It is out "
+        "of scope for a thesis about arbitral treatment and does not weaken the award-rate signal in "
+        "either direction (a missed-but-awarded penalty is still a penalty awarded).\n"
     )
 
     L.append("## Bottom line\n")
@@ -147,11 +148,13 @@ def main():
         "- On penalties **awarded**, Argentina is a real historical outlier: the all-time "
         "single-tournament record (2022) and an above-baseline rate again in 2026.\n"
         "- That outlier is **statistically significant when you pool the evidence**, but 2026 "
-        "on its own is not — and the missed 2026 penalties show 'favored on calls' is not the "
-        "same as 'gifted results'.\n"
+        "on its own is not (only 5 games). This measures penalties **awarded**; whether Argentina "
+        "*benefited* from them is a separate, outcome-level question it does not address.\n"
         "- **Significance is not intent.** Style of play (a possession-heavy side that attacks "
         "the box) and deep tournament runs both inflate penalty counts. This analysis proves an "
-        "anomaly; it does not, by itself, prove bias.\n"
+        "anomaly; it does not, by itself, prove bias. *Bias as a behavioral asymmetry* (the "
+        "Price-Wolfers sense) is testable, though — the identification designs live in "
+        "`reports/BIAS_IDENTIFICATION.md`.\n"
     )
 
     (REPORTS / "BASELINE_FINDINGS.md").write_text("".join(L))
@@ -187,21 +190,22 @@ def main():
     fig.savefig(FIG / "baseline_observed_vs_expected.png", dpi=150)
     plt.close(fig)
 
-    # ---- Figure: 2026 awarded vs converted ----
+    # ---- Figure: 2026 awarded vs converted (descriptive only — conversion is out of scope) ----
     fig, ax = plt.subplots(figsize=(6.5, 4.2))
-    ax.bar(["Awarded", "Converted"], [int(a26.pens_for), int(a26.pens_converted)],
+    ax.bar(["Awarded\n(referee decision)", "Converted\n(downstream)"],
+           [int(a26.pens_for), int(a26.pens_converted)],
            color=[ACCENT, ARG_NAVY])
     for i, v in enumerate([int(a26.pens_for), int(a26.pens_converted)]):
         ax.text(i, v + 0.03, str(v), ha="center", fontweight="bold")
     ax.set_ylabel("Penalties")
-    ax.set_title("The 2026 twist: Argentina got the calls, Messi missed them all",
+    ax.set_title("2026 (descriptive): the thesis tests 'awarded'; conversion is out of scope",
                  fontweight="bold")
     ax.set_ylim(0, max(2, int(a26.pens_for)) + 0.6)
     fig.tight_layout()
     fig.savefig(FIG / "twenty26_awarded_vs_converted.png", dpi=150)
     plt.close(fig)
 
-    print("\nWrote reports/BASELINE_FINDINGS.md and 3 figures to figures/.")
+    print("\nWrote reports/legacy/BASELINE_FINDINGS.md and 3 figures to figures/.")
 
 
 if __name__ == "__main__":

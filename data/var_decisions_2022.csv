@@ -1,0 +1,46 @@
+match,stage,decision_type,team_affected,beneficiary,verdict,dubious
+Argentina 3-3 France,Final,penalty awarded,Argentina,Argentina,soft,1
+Argentina 3-3 France,Final,penalty awarded,France,France,correct,0
+Argentina 3-3 France,Final,red card not issued,Argentina,Argentina,missed,1
+Argentina 3-3 France,Final,penalty appeal rejected,France,Argentina,correct,0
+Argentina 3-3 France,Final,goal awarded,Argentina,Argentina,correct,0
+Argentina 3-3 France,Final,penalty awarded,France,France,correct,0
+Croatia 2-1 Morocco,Third place,penalty appeal rejected,Croatia,Morocco,correct,0
+France 2-0 Morocco,Semifinal,penalty appeal rejected,Morocco,France,debatable,1
+England 1-2 France,Quarterfinal,goal awarded,France,France,correct,0
+England 1-2 France,Quarterfinal,penalty appeal rejected,England,France,correct,0
+England 1-2 France,Quarterfinal,penalty awarded,England,England,correct,0
+Morocco 1-0 Portugal,Quarterfinal,penalty appeal rejected,Morocco,Portugal,correct,0
+Morocco 1-0 Portugal,Quarterfinal,penalty appeal rejected,Portugal,Morocco,correct,0
+France 3-1 Poland,Round of 16,penalty awarded,Poland,Poland,correct,0
+France 3-1 Poland,Round of 16,penalty retake ordered,Poland,Poland,correct,0
+Ghana 0-2 Uruguay,Group,penalty appeal rejected,Uruguay,Ghana,debatable,1
+Ghana 0-2 Uruguay,Group,penalty awarded,Ghana,Ghana,correct,0
+Japan 2-1 Spain,Group,goal awarded,Japan,Japan,correct,0
+Costa Rica 2-4 Germany,Group,goal awarded,Germany,Germany,correct,0
+Croatia 0-0 Belgium,Group,penalty cancelled,Croatia,Belgium,correct,0
+Poland 0-2 Argentina,Group,penalty awarded,Argentina,Argentina,wrong,1
+Tunisia 1-0 France,Group,goal disallowed,France,Tunisia,debatable,1
+Netherlands 2-0 Qatar,Group,goal disallowed,Netherlands,Qatar,correct,0
+Portugal 2-0 Uruguay,Group,penalty awarded,Portugal,Portugal,wrong,1
+Brazil 1-0 Switzerland,Group,goal disallowed,Brazil,Switzerland,correct,0
+South Korea 2-3 Ghana,Group,goal awarded,Ghana,Ghana,correct,0
+Cameroon 3-3 Serbia,Group,goal awarded,Cameroon,Cameroon,correct,0
+Spain 1-1 Germany,Group,goal disallowed,Germany,Spain,correct,0
+Belgium 0-2 Morocco,Group,goal disallowed,Belgium,Morocco,correct,0
+Poland 2-0 Saudi Arabia,Group,penalty awarded,Saudi Arabia,Saudi Arabia,soft,1
+Netherlands 1-1 Ecuador,Group,goal disallowed,Ecuador,Netherlands,harsh,1
+Qatar 1-3 Senegal,Group,penalty appeal rejected,Qatar,Senegal,correct,0
+Wales 0-2 Iran,Group,red card issued,Wales,Iran,correct,0
+Wales 0-2 Iran,Group,goal disallowed,Iran,Wales,correct,0
+Portugal 3-2 Ghana,Group,penalty awarded,Portugal,Portugal,soft,1
+Belgium 1-0 Canada,Group,penalty awarded,Canada,Canada,correct,0
+Belgium 1-0 Canada,Group,penalty appeal rejected,Canada,Belgium,correct,0
+Belgium 1-0 Canada,Group,penalty appeal rejected,Canada,Belgium,correct,0
+Germany 1-2 Japan,Group,goal disallowed,Germany,Japan,correct,0
+Mexico 0-0 Poland,Group,penalty awarded,Poland,Poland,correct,0
+Denmark 0-0 Tunisia,Group,penalty appeal rejected,Denmark,Tunisia,correct,0
+Argentina 1-2 Saudi Arabia,Group,penalty awarded,Argentina,Argentina,soft,1
+Argentina 1-2 Saudi Arabia,Group,goal disallowed,Argentina,Saudi Arabia,correct,0
+England 6-2 Iran,Group,penalty awarded,Iran,Iran,soft,1
+Qatar 0-2 Ecuador,Group,goal disallowed,Ecuador,Qatar,correct,0

@@ -12,7 +12,7 @@ Three upgrades that move the project past a single penalty p-value:
                          is Argentina-specific, not "any good team."
 
 Run:  python src/exposure_and_scorecard.py
-Outputs: figures/*.png and reports/EXPOSURE_FINDINGS.md
+Outputs: figures/*.png and reports/legacy/EXPOSURE_FINDINGS.md
 """
 
 from pathlib import Path
@@ -27,7 +27,8 @@ import matplotlib.pyplot as plt
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 FIG = ROOT / "figures"
-REPORTS = ROOT / "reports"
+REPORTS = ROOT / "reports" / "legacy"
+REPORTS.mkdir(parents=True, exist_ok=True)
 
 ACCENT = "#D64545"      # Argentina / pro-thesis
 FRANCE = "#2B3A67"      # control
@@ -184,7 +185,7 @@ def main():
     ax.legend()
     fig.tight_layout(); fig.savefig(FIG / "placebo_control.png", dpi=150); plt.close(fig)
 
-    print("\nWrote reports/EXPOSURE_FINDINGS.md and 3 figures to figures/.")
+    print("\nWrote reports/legacy/EXPOSURE_FINDINGS.md and 3 figures to figures/.")
 
 
 if __name__ == "__main__":

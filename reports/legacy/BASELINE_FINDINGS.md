@@ -25,10 +25,10 @@ Across every team in every World Cup, the most penalties ever awarded to a singl
 
 - Before 2022, **no team in ~90 years of World Cups had been awarded more than 4** penalties in a single edition (Netherlands 1978, Portugal 1966).
 - Argentina's **5 in 2022 is the all-time record** — the single most extreme team-tournament ever recorded. Empirically, that is the 100th percentile.
-## The 2026 twist (and why it matters for honesty)
-- Argentina were awarded ~2 penalties in their first 5 games of 2026 — but **Messi missed both**, becoming the first player to miss two penalties in a single World Cup.
-- This cleanly separates two claims people conflate: **'Argentina gets the calls'** (the awards suggest: yes, again) vs **'Argentina always benefits'** (2026 says: not automatically — they fluffed both). A rigging narrative that ignores the misses is dishonest.
+## 2026 (provisional): the award rate held
+- Argentina were **awarded ~2 penalties** in their first 5 games of 2026 — the same above-baseline *award* rate, which is the variable this analysis tests.
+- Both were missed by Messi (a World Cup first), but **conversion is downstream of the referee's whistle** — it depends on the taker and the keeper, not the officials. It is out of scope for a thesis about arbitral treatment and does not weaken the award-rate signal in either direction (a missed-but-awarded penalty is still a penalty awarded).
 ## Bottom line
 - On penalties **awarded**, Argentina is a real historical outlier: the all-time single-tournament record (2022) and an above-baseline rate again in 2026.
-- That outlier is **statistically significant when you pool the evidence**, but 2026 on its own is not — and the missed 2026 penalties show 'favored on calls' is not the same as 'gifted results'.
-- **Significance is not intent.** Style of play (a possession-heavy side that attacks the box) and deep tournament runs both inflate penalty counts. This analysis proves an anomaly; it does not, by itself, prove bias.
+- That outlier is **statistically significant when you pool the evidence**, but 2026 on its own is not (only 5 games). This measures penalties **awarded**; whether Argentina *benefited* from them is a separate, outcome-level question it does not address.
+- **Significance is not intent.** Style of play (a possession-heavy side that attacks the box) and deep tournament runs both inflate penalty counts. This analysis proves an anomaly; it does not, by itself, prove bias. *Bias as a behavioral asymmetry* (the Price-Wolfers sense) is testable, though — the identification designs live in `reports/BIAS_IDENTIFICATION.md`.

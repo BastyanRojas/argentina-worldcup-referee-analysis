@@ -14,7 +14,7 @@ Data: data/argentina_penalty_history.csv (2018 & 2022 from StatsBomb = high conf
 pre-VAR years approximate; 2026 provisional).
 
 Run:  python src/structural_break.py
-Outputs: figures/structural_break.png and reports/STRUCTURAL_BREAK_FINDINGS.md
+Outputs: figures/structural_break.png and reports/legacy/STRUCTURAL_BREAK_FINDINGS.md
 """
 
 from pathlib import Path
@@ -29,7 +29,8 @@ import matplotlib.pyplot as plt
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 FIG = ROOT / "figures"
-REPORTS = ROOT / "reports"
+REPORTS = ROOT / "reports" / "legacy"
+REPORTS.mkdir(parents=True, exist_ok=True)
 
 ACCENT = "#D64545"
 BLUE = "#75AADB"
@@ -108,8 +109,9 @@ def main():
     L.append(
         "\n- Pre-VAR years (2010, 2014) are approximate but consistent: Argentina reached the **2014 "
         "final across 7 games and drew ~0 open-play penalties** (Higuaín was even denied an appeal "
-        "in that final). 2026 is provisional and ongoing — ~0.40/game, still ~2x baseline, though "
-        "Messi missed both.\n"
+        "in that final). 2026 is provisional and ongoing — ~0.40/game, still ~2x baseline (this is "
+        "the *award* rate; whether the penalties were converted is downstream of the referee and out "
+        "of scope here).\n"
         "- The rigorous claim rests only on the two StatsBomb years (2018 vs 2022); the rest is "
         "corroborating context.\n"
     )
@@ -166,7 +168,7 @@ def main():
     fig.savefig(FIG / "structural_break.png", dpi=150)
     plt.close(fig)
 
-    print("\nWrote reports/STRUCTURAL_BREAK_FINDINGS.md and figures/structural_break.png.")
+    print("\nWrote reports/legacy/STRUCTURAL_BREAK_FINDINGS.md and figures/structural_break.png.")
 
 
 if __name__ == "__main__":

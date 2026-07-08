@@ -9,6 +9,33 @@ Note the scope. This is a question about **penalty frequency**, not about intent
 corruption, or whether any individual call was correct. Statistics can flag an outlier;
 they cannot read a referee's mind.
 
+## The treatment variable: penalties *awarded*, not *converted*
+
+The variable under test is the **referee's decision to award a penalty** — the one
+event in this chain the officials control:
+
+```
+[referee decides] ──► PENALTY AWARDED ──► [taker shoots] ──► GOAL / MISS
+   the "box"            ↑ treatment           taker, keeper,     downstream,
+   under audit          variable              luck               out of scope
+```
+
+Everything to the right of the whistle — whether the kick is scored — depends on the
+taker, the goalkeeper, and chance, none of which a referee controls. So **conversion
+carries no information about arbitral treatment**, in either direction:
+
+- A *missed* penalty does **not** weaken the award-rate signal. The referee still
+  pointed to the spot; the numerator ("penalties awarded") is unchanged. If anything a
+  missed-but-awarded penalty is a *cleaner* observation of the referee decision, undiluted
+  by the outcome.
+- Whether Argentina "benefited" from a penalty is a separate, outcome-level question that
+  this project does not test and cannot answer from award counts. Treating a miss as
+  counter-evidence to arbitral favoritism is a category error.
+
+Every statistical test in this repo uses **penalties awarded** (`pens_for`), never
+penalties converted. Conversion figures (e.g. Messi's two 2026 misses) appear only as
+descriptive color and are deliberately kept out of every inferential claim.
+
 ## The test
 
 We treat penalties awarded to a team as a count process and model it as **Poisson**,
@@ -163,15 +190,130 @@ This reframes the entire project's takeaway: not "Argentina is favoured," but "s
 Argentina has drawn ~4× the field's penalties *at the World Cup* while being completely average
 elsewhere competitive." Striking, and true.
 
+## Seventh analysis — bias identification (`bias_identification.py`) — testing bias, not just anomaly
+
+Every prior analysis flags an *anomaly* and stops at "this does not prove bias." That
+stopping point conflated two meanings of "bias." **Intent** (a referee *meaning* to favor a
+team) is unidentifiable from outcome data — that limit stands. But **bias as a behavioral
+asymmetry in decisions** — the estimand of the refereeing-bias literature (Price & Wolfers
+2010; Garicano, Palacios-Huerta & Prendergast 2005) — is empirically identifiable, and this
+analysis tests it directly with four designs on raw StatsBomb event data (160 matches,
+`data/box_exposure_teammatch.csv` built by `build_box_exposure.py`):
+
+- **A. Opportunity-conditioned rate.** Replaces shots with the correct denominator — touches
+  in the opponent's box (referee-independent, unlike fouls). Exact multinomial inference, plus
+  an exact Westfall-Young family-wise test that replaces Bonferroni.
+- **B. Decision-quality asymmetry.** Independent contemporaneous grading of all 7 penalty
+  decisions involving Argentina (ESPN VAR review + pundit consensus): do *dubious* calls
+  break one way? (4/4 did.)
+- **C. Difference-in-differences.** Poisson GLM, tournament fixed effects, box-touch offsets,
+  Argentina × WC2022 interaction — Argentina's own 2018 and Copa 2024 as their control.
+- **D. Symmetry test.** A real bias should also shield the defense. It does not — reported
+  against ourselves.
+
+The verdict **forks on pre-registration**: treating 2022 as a fishing expedition, the
+family-wise exact p ≈ 0.30 on frequency. Treating "Argentina" as the documented standing
+accusation (Modrić Dec 2022; van Gaal's 'premeditated', Sept 2023 — strictly before Copa
+2024 and all 2026 data), the combined evidence reaches p ≈ 0.016 under the primary
+specification — with every conservative variant (exposure-conditioned quality null,
+VAR-era 2026 baseline, ~5-accusation multiplicity) landing between 0.03 and 0.05 —
+and **favorable treatment on penalty awards is demonstrated as a behavioral asymmetry**,
+while intent remains out of scope. Both branches are reported in
+`reports/BIAS_IDENTIFICATION.md`; the fork itself is the honest answer.
+
+## Eighth analysis — multi-margin surface, leverage gradient, field-wide call quality (`multimargin_leverage.py`)
+
+Closes the two objections the identification study left open. **Design M** tests five
+referee-discretion margins (penalties, dangerous FKs, fouls won, cards received per foul,
+opponents' cards), each with its own exposure: the asymmetry is **penalty-only** —
+generalized favoritism is false in this data. **Design L** ranks margins by goal-equivalent
+leverage (penalty ≈ 0.78, calibrated from event data): Argentina's treatment-vs-leverage
+gradient ranks 3/32 — favored precisely where a decision is worth the most. **Design E**
+structures ESPN's full VAR audit (45 graded decisions) into `data/var_decisions_2022.csv`:
+Argentina benefited from **4 of the tournament's 12 dubious decisions** (most of any team;
+no other team above 2), joint exact p = 0.003 under the match-uniform null, and **selection-corrected p between
+0.021 and 0.05** depending on the allocation null (match-uniform vs decision-conditioned —
+neither dominates; both reported). The only full-field multiplicity-corrected evidence in
+the project. Caveats: one outlet's gradings, binarized non-blind; covers VAR-reviewed
+decisions only (excludes Argentina's two on-field knockout penalties — a bias *against*
+the finding). Results in `reports/MULTIMARGIN_FINDINGS.md`.
+
+## Methodological references (design → statistical lineage)
+
+**Domain (referee bias):**
+- Price & Wolfers (2010), *QJE* — racial bias among NBA referees; the estimand template.
+- Garicano, Palacios-Huerta & Prendergast (2005), *REStat* — favoritism under social pressure.
+- Pope & Pope (2015), *Economic Inquiry* — own-nationality bias in Champions League referees.
+- Dohmen & Sauermann (2016), *J. Economic Surveys* — survey of the referee-bias literature.
+
+**Design A (opportunity-conditioned rates):**
+- Breslow & Day (1987), IARC Vol. II — the observed/expected construction is a standardized
+  incidence ratio; exact conditional Poisson tests.
+- Westfall & Young (1993) — resampling-based multiple testing (the min-p family-wise test).
+- Garwood (1936), *Biometrika* — exact Poisson confidence intervals.
+
+**Designs B/E (decision-quality grading):**
+- Sutter & Kocher (2004), *J. Economic Psychology* — home bias tested against the *Kicker*
+  expert panel's grading of whether awarded penalties were justified.
+- Dohmen (2008), *Economic Inquiry* — graded goal/penalty decisions + multi-margin strategy
+  (stoppage time, goals, penalties) — also the precedent for Design M.
+- Erikstad & Johansen (2020), *Frontiers Sports Act. Living* — conditioning on independently
+  identified "potential penalty situations".
+
+**Design C (difference-in-differences):**
+- Angrist & Pischke (2009) — DiD identification. McCullagh & Nelder (1989) — Poisson GLM
+  with offsets. Conley & Taber (2011), *REStat* — inference with a small number of treated
+  units (why C triangulates rather than carries the inference).
+
+**Design D (defensive symmetry):**
+- Lipsitch, Tchetgen Tchetgen & Cohen (2010), *Epidemiology* — negative control outcomes
+  for detecting confounding; Design D is exactly this.
+
+**Designs M/L (specificity & gradient):**
+- Hill (1965), *Proc. R. Soc. Med.* — the specificity and (dose-)gradient criteria for
+  causal claims from observational data.
+- Parsons, Sulaeman, Yates & Hamermesh (2011), *AER* — umpire bias concentrated in
+  high-discretion, low-scrutiny calls; the signature Design L tests for.
+
+**Combination & pre-registration:**
+- Fisher (1925) — combination of independent p-values.
+- Nosek, Ebersole, DeHaven & Mellor (2018), *PNAS* — the pre-registration framework behind
+  the registered predictions P1–P4.
+
+## Pre-registered predictions (registered 2026-07-07, tournament ongoing)
+
+Because the 2026 World Cup is still in progress, the paper registers falsifiable
+predictions NOW — the git history timestamps them, making the end-of-tournament tests
+ex-ante by construction (see `latex/main.tex`, Section "Future work"):
+
+- **P1 — verification:** the provisional 2026 quantities (Argentina 2 pens / 5 games;
+  field 18 / 92 matches) survive event-data verification within one penalty.
+- **P2 — frequency (direction only):** Argentina's remaining 2026 matches continue at or
+  above the concurrent field penalty rate.
+- **P3 — quality (the sharp one):** end-of-tournament VAR audits will show dubious
+  decisions in Argentina matches disproportionately favoring Argentina, leading or
+  co-leading the field — the out-of-sample replication of Design E. This dataset does not
+  exist yet, so the prediction is fully open.
+- **P4 — falsifiers registered:** blind re-grading rating the calls predominantly correct
+  collapses Designs B/E; a penalty excess at Copa América 2028 breaks WC-specificity; a
+  ~1x box-touch-adjusted 2026 fold leaves 2022 as a one-tournament anomaly.
+
 ## To strengthen this further (open TODOs)
 
 - ~~Pull all 32 teams' 2022 penalty counts for a full within-tournament test with a
   multiple-comparisons correction.~~ **Done** — `fullfield_regression.py` (StatsBomb).
 - ~~Add an exposure model based on shots, not just games played.~~ **Done** — shots and xG
   exposure, all 32 teams.
-- Extend the exposure regression to 2018 + 1990 + 1986 (also in StatsBomb open data) for a
-  multi-tournament, mixed-effects version — the natural next escalation.
-- Add box-entry / final-third touch exposure (StatsBomb 360 freeze-frames) for an even
-  tighter "time spent in dangerous areas" control.
+- ~~Extend the exposure regression to multiple tournaments for a mixed-effects version.~~
+  **Done** — `bias_identification.py` Design C (WC2018 + WC2022 + Copa 2024 DiD).
+- ~~Add box-entry / final-third touch exposure for a tighter "time spent in dangerous areas"
+  control.~~ **Done** — `build_box_exposure.py` + `bias_identification.py` Design A
+  (box touches, box entries, and fouls-won exposures).
+- ~~Extend Design B (call-quality grading) to the full field.~~ **Done for VAR-reviewed
+  decisions** — `multimargin_leverage.py` Design E (45 ESPN-graded decisions). Remaining:
+  a *blind*, multi-assessor grading that also covers on-field non-reviewed calls and
+  major non-calls — that removes the outlet dependence and the reviewed-only selection.
+- Referee-assignment analysis: FIFA appointment records to test whether penalty-generous
+  officials were disproportionately assigned to Argentina matches.
 - Backfill 2026 with verified, final numbers once the tournament concludes (counts here are a
   provisional minimum).

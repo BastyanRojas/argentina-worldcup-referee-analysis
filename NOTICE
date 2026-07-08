@@ -1,0 +1,41 @@
+NOTICE — Provenance and attribution
+===================================
+
+Original work
+-------------
+The foundational analyses of this repository were authored by Kai Morales and
+published at:
+
+    https://github.com/kaimorales/argentina-worldcup-referee-analysis
+
+Original commits (d5820f8..68f28e0) comprise: the single-tournament Poisson
+test (src/analyze.py), the historical-baseline comparison
+(src/baseline_comparison.py), the France exposure comparison, scorecard and
+placebo control (src/exposure_and_scorecard.py), the 32-team shots-exposure
+regression (src/fullfield_regression.py), the structural-break test
+(src/structural_break.py), the conspiracy-window scope test
+(src/conspiracy_window.py), and the curated datasets and reports they
+generate. That work was published without a license; copyright remains with
+its author. An issue has been suggested upstream inviting the author to adopt
+one.
+
+Contributions in this fork
+--------------------------
+Authored by Bastián Rojas (commits a762316 onward), MIT-licensed (see LICENSE):
+
+  - Treatment-variable reformulation (penalties awarded, not converted)
+  - src/build_box_exposure.py — 160-match box-exposure dataset builder
+  - src/bias_identification.py — four bias-identification designs, exact
+    family-wise inference, pre-registration fork, combined evidence
+  - data/box_exposure_teammatch.csv, data/argentina_2022_penalty_quality.csv
+  - reports/BIAS_IDENTIFICATION.md, figures/bias_*.png
+  - latex/ — the scientific paper (also available under CC BY 4.0)
+
+Data attribution
+----------------
+Match event data derived from StatsBomb Open Data
+(https://github.com/statsbomb/open-data), used under the StatsBomb open-data
+license: free for research and non-commercial use, attribution required.
+Penalty decision gradings reference ESPN's public VAR review and
+contemporaneous public reporting; per-item sources in data/SOURCES.md and
+data/argentina_2022_penalty_quality.csv.

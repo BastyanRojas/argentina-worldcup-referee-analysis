@@ -11,7 +11,7 @@ For each tournament we compare Argentina to the rest of the field (which cancels
 competition-wide refereeing tendencies) and report it straight.
 
 Run:  python src/conspiracy_window.py
-Outputs: figures/conspiracy_window.png and reports/CONSPIRACY_WINDOW_FINDINGS.md
+Outputs: figures/conspiracy_window.png and reports/legacy/CONSPIRACY_WINDOW_FINDINGS.md
 """
 
 from pathlib import Path
@@ -26,7 +26,8 @@ import matplotlib.pyplot as plt
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 FIG = ROOT / "figures"
-REPORTS = ROOT / "reports"
+REPORTS = ROOT / "reports" / "legacy"
+REPORTS.mkdir(parents=True, exist_ok=True)
 
 ACCENT = "#D64545"
 BLUE = "#75AADB"
@@ -69,7 +70,8 @@ def main():
         )
     L.append(
         f"| 2026 FIFA World Cup | FIFA | 2* | 5 | (provisional) | ~2x* | — | — |\n\n"
-        "_*2026 provisional, tournament ongoing; both penalties missed by Messi._\n"
+        "_*2026 provisional, tournament ongoing. Count is penalties **awarded**; both were missed by "
+        "Messi, but conversion is downstream of the referee and out of scope for this analysis._\n"
     )
 
     L.append("## The honest headline: the anomaly is WORLD-CUP-specific\n")
@@ -140,7 +142,7 @@ def main():
     fig.savefig(FIG / "conspiracy_window.png", dpi=150)
     plt.close(fig)
 
-    print("\nWrote reports/CONSPIRACY_WINDOW_FINDINGS.md and figures/conspiracy_window.png.")
+    print("\nWrote reports/legacy/CONSPIRACY_WINDOW_FINDINGS.md and figures/conspiracy_window.png.")
 
 
 if __name__ == "__main__":

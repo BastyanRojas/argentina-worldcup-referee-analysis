@@ -15,4 +15,4 @@ Null hypothesis: Argentina drew penalties at the tournament-average rate, adjust
 - **Confounder:** penalties are earned partly by play style. Argentina attacked, held the ball, and drew fouls in the box. Per-game normalization helps but cannot fully separate 'favoritism' from 'a lot of dangerous attacking touches.'
 ## What this does and does not prove
 - It **does** show Argentina's penalty count was a genuine statistical outlier, not a vibe.
-- It **does not**, by itself, prove intent or bias — an outlier can be produced by style of play, deep tournament runs, and small samples. That distinction is the difference between a credible post and a conspiracy screenshot.
+- It **does not**, by itself, prove intent or bias — an outlier can be produced by style of play, deep tournament runs, and small samples. That distinction is the difference between a credible post and a conspiracy screenshot. (Bias *as a behavioral asymmetry in decisions* — distinct from intent — IS empirically testable with stronger designs: see `reports/BIAS_IDENTIFICATION.md`.)

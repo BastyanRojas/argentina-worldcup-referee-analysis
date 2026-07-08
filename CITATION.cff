@@ -1,0 +1,41 @@
+cff-version: 1.2.0
+message: >-
+  If you use this repository, please cite it as below. The foundational
+  analyses are by Kai Morales (original repository); the bias-identification
+  study and paper are by Bastián Rojas (this fork).
+title: >-
+  Refereeing Asymmetry at the FIFA World Cup: An Identification Study of
+  Penalty Awards to Argentina, 2018-2026
+type: software
+authors:
+  - family-names: Rojas
+    given-names: Bastián
+    email: bastianrb97@gmail.com
+    affiliation: Independent analysis
+  - family-names: Morales
+    given-names: Kai
+    affiliation: Original repository author
+repository-code: https://github.com/BastyanRojas/argentina-worldcup-referee-analysis
+url: https://github.com/BastyanRojas/argentina-worldcup-referee-analysis
+license: MIT
+date-released: '2026-07-07'
+keywords:
+  - refereeing bias
+  - penalty kicks
+  - FIFA World Cup
+  - Poisson exposure models
+  - multiple comparisons
+  - difference-in-differences
+  - StatsBomb
+references:
+  - type: software
+    title: argentina-worldcup-referee-analysis (original repository)
+    authors:
+      - family-names: Morales
+        given-names: Kai
+    repository-code: https://github.com/kaimorales/argentina-worldcup-referee-analysis
+  - type: data
+    title: StatsBomb Open Data
+    authors:
+      - name: StatsBomb
+    repository-code: https://github.com/statsbomb/open-data

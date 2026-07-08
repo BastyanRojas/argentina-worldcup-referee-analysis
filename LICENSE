@@ -1,0 +1,46 @@
+SCOPE OF THIS LICENSE
+=====================
+
+This repository is a fork of
+https://github.com/kaimorales/argentina-worldcup-referee-analysis
+by Kai Morales, which was published without a license. Copyright in the
+original work (commits d5820f8 through 68f28e0: src/analyze.py,
+src/baseline_comparison.py, src/exposure_and_scorecard.py,
+src/fullfield_regression.py, src/structural_break.py, src/conspiracy_window.py,
+and the datasets and reports they generate) remains with its author; see NOTICE
+for details.
+
+The MIT License below covers the contributions authored by Bastián Rojas in this
+fork (commits a762316 onward), including but not limited to:
+src/build_box_exposure.py, src/bias_identification.py,
+data/box_exposure_teammatch.csv, data/argentina_2022_penalty_quality.csv,
+reports/BIAS_IDENTIFICATION.md, figures/bias_*.png, and latex/.
+The paper (latex/main.tex, main.pdf) may alternatively be used under
+CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/).
+
+Match event data are derived from StatsBomb Open Data and remain subject to the
+StatsBomb open-data license (attribution required, non-commercial):
+https://github.com/statsbomb/open-data/blob/master/LICENSE.pdf
+
+MIT License
+===========
+
+Copyright (c) 2026 Bastián Rojas
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

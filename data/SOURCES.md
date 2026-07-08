@@ -50,6 +50,45 @@ for / 2 against in 7 games.**
   2022 rows are StatsBomb (high confidence); 2010/2014 are approximate (web, low confidence);
   2026 is provisional. 1986 (season_id 54) open data is only partial (3 matches) and is not used.
 
+## Box-exposure dataset (bias identification — highest confidence)
+
+`data/box_exposure_teammatch.csv` — built by `src/build_box_exposure.py` directly from
+StatsBomb open event data: WC2018 (64 matches), WC2022 (64), Copa América 2024 (32), one
+row per team-match with box touches, box entries, fouls won in the final third, defensive
+box contests, penalties for/against (shootouts excluded), shots, xG, and the match referee.
+Sanity-checked on rebuild: reproduces WC2018 = 29 total penalties, WC2022 = 23, and
+Argentina 2022 = 5 for / 2 against in 7 games.
+
+## Penalty decision quality (Design B — medium confidence, judgment layer)
+
+`data/argentina_2022_penalty_quality.csv` — independent contemporaneous grading of all 7
+penalty decisions involving Argentina at WC2022. Verdicts for 5 of 7 come from ESPN's VAR
+review (soft / wrong / correct, quoted); the Netherlands QF call (widely accepted) and the
+Croatia SF call (pundits split — graded *debatable*) from contemporaneous reporting:
+
+- ESPN — VAR review, every 2022 decision analysed: https://www.espn.com/soccer/story/_/id/37634070/var-review-every-decision-world-cup-analysed
+- All Football — Shearer on the Croatia penalty: https://m.allfootballapp.com/news/Headline/Alan-Shearer-insists-it-was-the-RIGHT-decision-to-give-Argentina-an-early-penalty-against-Croatia/2982745
+- Eurosport — Modrić: referee "a disaster": https://www.eurosport.com/football/world-cup/2022/luka-modric-says-referee-was-a-disaster-in-croatia-s-world-cup-semi-final-loss-to-argentina-wishes-l_sto9273047/story.shtml
+- Football Italia — Dumfries penalty vs Argentina: https://football-italia.net/world-cup-dumfries-gives-away-penalty-in-netherlands-argentina/
+
+The gradings are a judgment layer over reporting — the sign test in
+`reports/BIAS_IDENTIFICATION.md` flags this explicitly.
+
+## Field-wide VAR decision dataset (Design E — medium confidence, judgment layer)
+
+`data/var_decisions_2022.csv` — all 45 VAR decisions of WC2022 as graded by ESPN's
+tournament-wide audit (the same article as the Argentina-only gradings above),
+structured into: match, decision type, team affected, beneficiary, verdict, dubious
+flag. Beneficiary semantics: for "awarded" types the listed team is the recipient;
+for "disallowed/rejected/cancelled" types the beneficiary is the opponent of the team
+affected. Covers VAR-reviewed decisions only — on-field calls VAR silently confirmed
+(e.g., Argentina's Netherlands QF and Croatia SF penalties) are absent by
+construction. Gradings are one outlet's judgments extracted from prose; treat the
+"dubious" flag (soft/debatable/wrong/harsh/missed) as a judgment layer.
+
+Aggregate cross-check from the article: 25 overturns, 10 VAR-awarded penalties
+(6 missed), 1 penalty cancelled, 1 retake, 8 offside disallowances.
+
 ## Historical baseline / control group (high confidence)
 
 Used by `src/baseline_comparison.py` to place Argentina against World Cup history.
@@ -78,6 +117,22 @@ across sources were not fully consistent and must be re-verified.
   **both missed by Messi** — the first player to miss two penalties in a single World
   Cup. Count is a confirmed minimum; treat as provisional.
 - Argentina had played **5 matches** as of 2026-07-07.
+- **Penalty count independently verified (2026-07-07):** TNT Sports confirms both
+  penalties — vs Austria (group, VAR-awarded) and vs Egypt (R16: Hassan foul on
+  Tagliafico, three minutes after Egypt's opener). Count of 2 stands.
+- **2026 field baseline to date (`data/wc2026_field_provisional.csv`): 18 penalties
+  awarded in play across 92 matches** (11 in the group stage; 14 converted, 77.8%) =
+  0.098/team-match — **roughly half the VAR-era rate**. Reporting notes a "notable
+  decline in penalties" this tournament. PROVISIONAL — re-verify at tournament end.
+- **Call-quality note:** no independent gradings exist yet for the two 2026 Argentina
+  penalties (ESPN's 2026 VAR review does not grade them). The disallowed Egypt goal
+  (R16, Attia foul on L. Martínez before Zico's finish) WAS graded: **correct
+  intervention** per ESPN. Design B therefore remains 2022-only.
+
+Additional 2026 references:
+- Statbunker — penalties awarded WC2026: https://statbunker.com/competitions/ForPenalty?comp_id=790
+- YSscores — notable decline in penalty kicks at the 2026 World Cup: https://www.ysscores.com/en/news/13988720/notable-decline-in-penalty-kicks-at-the-2026-world-cup
+- FOX Sports — Egypt goal vs Argentina disallowed after VAR check: https://www.foxsports.com/stories/soccer/egypts-goal-vs-argentina-disallowed-after-var-check-not-why-var-brought-game
 
 Reference reporting:
 - Al Jazeera — most controversial VAR decisions, group stage: https://www.aljazeera.com/sports/2026/6/28/world-cup-2026-most-controversial-var-officiating-decisions-in-group-stage

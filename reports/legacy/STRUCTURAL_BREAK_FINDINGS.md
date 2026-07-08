@@ -24,7 +24,7 @@ In 2018 Argentina's haul is exactly what the field predicts (p = 0.60, no anomal
 | 2022 | Champion | 5 | 0.71 | 4.0x | StatsBomb | high |
 | 2026 | ongoing | 2 | 0.40 | — | web | provisional |
 
-- Pre-VAR years (2010, 2014) are approximate but consistent: Argentina reached the **2014 final across 7 games and drew ~0 open-play penalties** (Higuaín was even denied an appeal in that final). 2026 is provisional and ongoing — ~0.40/game, still ~2x baseline, though Messi missed both.
+- Pre-VAR years (2010, 2014) are approximate but consistent: Argentina reached the **2014 final across 7 games and drew ~0 open-play penalties** (Higuaín was even denied an appeal in that final). 2026 is provisional and ongoing — ~0.40/game, still ~2x baseline (this is the *award* rate; whether the penalties were converted is downstream of the referee and out of scope here).
 - The rigorous claim rests only on the two StatsBomb years (2018 vs 2022); the rest is corroborating context.
 ## Verdict (reported straight)
 - The data supports a **genuine change in 2022**, not a longstanding pattern: Argentina were the 19th-most-penalized team in 2018 and the 1st in 2022, under identical rules, with no change in how much they attacked.

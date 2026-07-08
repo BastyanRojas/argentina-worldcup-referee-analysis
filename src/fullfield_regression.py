@@ -11,7 +11,7 @@ Data: data/statsbomb_team_stats_2022.csv  (built from statsbomb/open-data, comp 
 106 = FIFA World Cup 2022, all 64 competitive matches; shootouts excluded).
 
 Run:  python src/fullfield_regression.py
-Outputs: figures/*.png and reports/FULLFIELD_FINDINGS.md
+Outputs: figures/*.png and reports/legacy/FULLFIELD_FINDINGS.md
 """
 
 from pathlib import Path
@@ -27,7 +27,8 @@ import matplotlib.pyplot as plt
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 FIG = ROOT / "figures"
-REPORTS = ROOT / "reports"
+REPORTS = ROOT / "reports" / "legacy"
+REPORTS.mkdir(parents=True, exist_ok=True)
 
 ACCENT = "#D64545"
 GREY = "#9AA0A6"
@@ -217,7 +218,7 @@ def main():
                  fontweight="bold")
     fig.tight_layout(); fig.savefig(FIG / "fullfield_residuals.png", dpi=150); plt.close(fig)
 
-    print("\nWrote reports/FULLFIELD_FINDINGS.md and 3 figures to figures/.")
+    print("\nWrote reports/legacy/FULLFIELD_FINDINGS.md and 3 figures to figures/.")
 
 
 if __name__ == "__main__":

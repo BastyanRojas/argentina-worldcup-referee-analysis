@@ -21,6 +21,19 @@ Reference reporting:
 - Statbunker penalties awarded 2022: https://www.statbunker.com/competitions/ForPenalty?comp_id=727
 - Guinness World Records — most yellow cards in a WC match: https://www.guinnessworldrecords.com/world-records/730722-most-yellow-cards-issued-in-a-fifa-world-cup-match
 
+## StatsBomb open data (primary source for the full-field analysis — highest confidence)
+
+`data/statsbomb_team_stats_2022.csv` is aggregated directly from StatsBomb's free open
+event data (all 64 competitive matches of the 2022 World Cup — Group Stage + knockouts, no
+friendlies). Penalty shootouts (period 5) are excluded, so counts reflect penalties awarded
+in play. Independently reproduces the headline facts: **total penalties = 23; Argentina = 5
+for / 2 against in 7 games.**
+
+- StatsBomb open-data: https://github.com/statsbomb/open-data (competition_id 43, season_id
+  106 = FIFA World Cup 2022)
+- Per-team fields derived: non-penalty shots, non-penalty xG, penalties for/against, fouls
+  won/committed, yellow/red cards.
+
 ## Historical baseline / control group (high confidence)
 
 Used by `src/baseline_comparison.py` to place Argentina against World Cup history.

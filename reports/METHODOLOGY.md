@@ -94,10 +94,39 @@ scrapers), so the exposure model is anchored on the two finalists, whose shot/xG
 figures are individually sourced (xgscore.io). This is the strongest *matched* control but not
 a full-field regression — see TODOs.
 
+## Fourth analysis: full 32-team exposure regression (`fullfield_regression.py`)
+
+The definitive version, on real StatsBomb event data (all 64 competitive 2022 matches;
+shootouts excluded).
+
+- **Model.** Penalties are Poisson with attacking volume (shots) as exposure: each team's
+  expected penalties = (23 total penalties / 1,430 total shots) × its own shots. Fit and
+  test all 32 teams at once.
+- **Result.** Argentina has the largest positive Pearson residual of the field (+2.78 SD,
+  rank 1/32); its shots-adjusted rate is 5.2 penalties/100 shots vs a 1.6 field average.
+  The verdict is identical with **xG** as the exposure instead of shots (robustness check).
+- **Multiple comparisons — reported straight.** Argentina's raw p = 0.021 (the only team
+  under 0.05). But testing 32 teams inflates false positives, so we correct: Bonferroni and
+  Benjamini-Hochberg both push Argentina to p ≈ 0.66 — **not significant.** With only five
+  penalty events, no single-tournament rate test can survive the strictest correction. We do
+  not hide this.
+- **Why the conclusion still stands.** It rests on *convergence*, not one number: (1) the
+  largest shots- and xG-adjusted residual of all 32 teams; (2) a matched control (France
+  attacked *more* for fewer penalties); (3) an all-time record no small-sample fluke
+  reproduces. Three independent signals, one direction.
+
+This is the honest ceiling: **a real, field-leading anomaly that the innocent explanations
+do not cover — not a proof of intent.**
+
 ## To strengthen this further (open TODOs)
 
-- Pull all 32 teams' 2022 penalty counts for a full within-tournament permutation test with a
-  multiple-comparisons correction (the current record lens uses only the tail).
-- Add an exposure model based on box touches / shots, not just games played.
+- ~~Pull all 32 teams' 2022 penalty counts for a full within-tournament test with a
+  multiple-comparisons correction.~~ **Done** — `fullfield_regression.py` (StatsBomb).
+- ~~Add an exposure model based on shots, not just games played.~~ **Done** — shots and xG
+  exposure, all 32 teams.
+- Extend the exposure regression to 2018 + 1990 + 1986 (also in StatsBomb open data) for a
+  multi-tournament, mixed-effects version — the natural next escalation.
+- Add box-entry / final-third touch exposure (StatsBomb 360 freeze-frames) for an even
+  tighter "time spent in dangerous areas" control.
 - Backfill 2026 with verified, final numbers once the tournament concludes (counts here are a
   provisional minimum).

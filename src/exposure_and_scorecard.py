@@ -83,17 +83,20 @@ def main():
     L.append(f"| **Penalties per 100 shots** | **{ra['per_100_shots']:.1f}** | **{rf['per_100_shots']:.1f}** | **{ra['per_100_shots']/rf['per_100_shots']:.1f}x** |\n")
     L.append(f"| Penalties per xG | {ra['per_xg']:.2f} | {rf['per_xg']:.2f} | {ra['per_xg']/rf['per_xg']:.1f}x |\n\n")
     L.append(
-        f"**The rebuttal fails.** France attacked *more* (92 vs 76 shots) for *equal* xG, yet got "
+        f"**The rebuttal fails.** France attacked *more* ({int(fra.shots)} vs {int(arg.shots)} shots) "
+        f"for equal-or-higher xG, yet got "
         f"{arg.pens_for/fra.pens_for:.1f}x fewer penalties. On every exposure-adjusted basis — per "
         f"game, per shot, per xG — Argentina drew **{ra['per_100_shots']/rf['per_100_shots']:.1f}x-"
         f"{ra['per_game']/rf['per_game']:.1f}x** as many penalties as an equally elite side. "
         "The penalties are not a byproduct of raw attacking volume.\n"
     )
+    arg_xgps = arg.xg / arg.shots
+    fra_xgps = fra.xg / fra.shots
     L.append(
-        "**Honest confounder:** Argentina's xG/shot was higher (0.155 vs 0.125) — their chances "
-        "came from better positions, i.e. more time in dangerous areas. That plausibly earns *some* "
-        "extra penalties. But a 15% edge in chance quality does not explain a 2.5-3x gap in penalty "
-        "rate.\n"
+        f"**Chance-quality check (StatsBomb):** Argentina's xG/shot was {arg_xgps:.3f} vs France's "
+        f"{fra_xgps:.3f} — essentially identical. So this is not a case of Argentina taking better "
+        "chances from more dangerous spots; the two finalists generated the same quality of shot. "
+        "The penalty gap has no attacking explanation left.\n"
     )
 
     L.append("## #2 The full refereeing scorecard — where the nuance lives\n")

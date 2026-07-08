@@ -105,6 +105,43 @@ Code, data, and every source in the repo 👇
 
 ---
 
+## Version F — the full 32-team model (the rigorous flex)
+
+I got tired of the "Argentina just attacked more, that's why they got penalties" replies. So I
+pulled StatsBomb's event data for all 64 matches of the 2022 World Cup and modeled it properly.
+
+The test: penalties should scale with how much you attack. So I set each team's *expected*
+penalties = the tournament's penalty-per-shot rate × that team's own shots, for all 32 teams.
+
+Argentina's result:
+• Expected penalties from their shot volume: **~1.5**
+• Actual: **5**
+• That's the **largest shots-adjusted residual of any team in the tournament (+2.8 SD)** —
+  **5.2 penalties per 100 shots vs a 1.6 field average.** Rank: 1st of 32.
+• Same answer when I use xG instead of shots.
+
+And the control that ends the debate: **France took MORE shots (100 vs 96) and higher xG than
+Argentina — and got 2 penalties to Argentina's 5.** More attacking, fewer penalties.
+
+Now the honesty that most "gotcha" posts skip: when you test 32 teams, someone leads by luck.
+After a multiple-comparisons correction, Argentina's result is **no longer statistically
+significant on its own** (5 penalties is a small sample). I'm telling you that on purpose.
+
+So why do I still think it's real? Because three independent things all point the same way:
+1️⃣ biggest attacking-adjusted outlier of all 32 teams,
+2️⃣ the other finalist attacked more for fewer penalties,
+3️⃣ it's the most penalties any team has EVER gotten in a World Cup (previous record: 4).
+
+A fluke gives you one of those. Not all three.
+
+The honest conclusion: Argentina drew penalties at a rate that no attacking, peer, or
+historical baseline explains. That's not proof of a conspiracy — data can't read minds — but
+"they just attacked more" is dead on arrival. Code + data + every source in the repo. 👇
+
+#DataScience #SportsAnalytics #WorldCup #Statistics #StatsBomb #Football
+
+---
+
 ## Version E — the France comparison (the single most convincing angle)
 
 "Argentina got the most penalties because they attacked the most." I hear this every time. So

@@ -20,11 +20,16 @@ The question is how extreme Argentina's penalty haul is against that historical 
   - 2022 → 3.5× expected, **p = 0.015** (significant)
   - 2026 (provisional) → 2.0× expected, p = 0.27 (not significant; only 5 games)
   - **2022 + 2026 pooled → 2.9× expected, p = 0.013** (significant)
+- **Full 32-team model (real StatsBomb event data):** modelling penalties as proportional to
+  attacking volume across all 32 teams, **Argentina is the single biggest outlier** — largest
+  shots-adjusted residual (+2.78 SD), rank 1/32, **5.2 penalties per 100 shots vs a 1.6 field
+  average**, and the *only* team significant at raw p = 0.021.
 - **It's not just "they attack more":** France — the other finalist, same 7 games — took
-  **more shots (92 vs 76)** for **equal xG (11.5 vs 11.8)** yet got **2.5× fewer penalties.**
-  Per 100 shots, Argentina drew **3× as many** as an equally elite side.
-- **Placebo check passes:** the same outlier test flags Argentina (p = 0.015) but **not**
-  France (p = 0.42) — the signal is Argentina-specific, not "any good team."
+  **more shots (100 vs 96)** for **higher xG (10.25 vs 10.02)** yet got **2.5× fewer penalties.**
+  Chance quality was identical (xG/shot 0.10 both), so volume can't explain the gap.
+- **Honest statistics:** after correcting for testing 32 teams (Bonferroni/BH), Argentina's
+  p rises to 0.66 — *not* significant. Five penalty events can't carry a harsh correction alone.
+  The case rests on **convergence**: biggest residual + France control + all-time record.
 - **The 2026 twist:** Argentina were awarded ≥2 penalties again — but **Messi missed both**,
   the first player ever to miss two in a single World Cup. "Gets the calls" ≠ "always benefits."
 - **Counter-evidence / nuance (2022):** the same refs booked them **16 times in 7 games**,
@@ -41,10 +46,14 @@ come from a possession-heavy side that lives in the opponent's box.
 ```bash
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
-python src/analyze.py               # 2022 single-tournament deep-dive
-python src/baseline_comparison.py   # Argentina (2022+2026) vs World Cup history
-python src/exposure_and_scorecard.py # exposure model + scorecard + placebo control
+python src/analyze.py                # 2022 single-tournament deep-dive
+python src/baseline_comparison.py    # Argentina (2022+2026) vs World Cup history
+python src/exposure_and_scorecard.py # France exposure comparison + scorecard + placebo
+python src/fullfield_regression.py   # all 32 teams, StatsBomb data, exposure regression
 ```
+
+The StatsBomb dataset (`data/statsbomb_team_stats_2022.csv`) is already built and committed.
+To rebuild it from source, see the downloader note in `data/SOURCES.md`.
 
 Outputs regenerate the `reports/*.md` findings files and charts in `figures/`.
 
@@ -60,10 +69,12 @@ Outputs regenerate the `reports/*.md` findings files and charts in `figures/`.
 | `data/argentina_2026_incidents_provisional.csv` | Best-effort 2026 refereeing incidents (provisional) |
 | `data/team_exposure_2022.csv` | Argentina vs France: shots, xG, penalties (exposure control) |
 | `data/argentina_scorecard_2022.csv` | Multi-metric refereeing scorecard inputs |
+| `data/statsbomb_team_stats_2022.csv` | **All 32 teams** from StatsBomb events (shots, xG, pens, fouls, cards) |
 | `data/SOURCES.md` | Every figure's provenance and confidence level |
 | `src/analyze.py` | 2022 single-tournament Poisson test → `FINDINGS.md` + figures |
 | `src/baseline_comparison.py` | Argentina (2022+2026) vs World Cup history → `BASELINE_FINDINGS.md` + figures |
-| `src/exposure_and_scorecard.py` | Exposure model + scorecard + placebo → `EXPOSURE_FINDINGS.md` + figures |
+| `src/exposure_and_scorecard.py` | France exposure comparison + scorecard + placebo → `EXPOSURE_FINDINGS.md` + figures |
+| `src/fullfield_regression.py` | 32-team StatsBomb exposure regression + multiple-comparison correction → `FULLFIELD_FINDINGS.md` + figures |
 | `reports/*_FINDINGS.md` | Auto-generated results |
 | `reports/METHODOLOGY.md` | How the tests work and their limits |
 | `reports/linkedin_post.md` | Drafted posts, ready to adapt |

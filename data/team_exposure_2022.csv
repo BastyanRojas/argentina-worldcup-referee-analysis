@@ -1,3 +1,3 @@
 team,games,shots,xg,pens_for,confidence,source_note
-Argentina,7,76,11.8,5,high,"xgscore.io; 0.155 xG/shot; pens vs SAU/NED/CRO/FRA scored + POL missed"
-France,7,92,11.5,2,high,"xgscore.io; 0.125 xG/shot; both penalties in the final (Mbappe)"
+Argentina,7,96,10.02,5,high,"StatsBomb open-data; non-penalty shots & non-penalty xG; penalties exclude shootout"
+France,7,100,10.25,2,high,"StatsBomb open-data; MORE shots & HIGHER xG than Argentina, yet fewer penalties"

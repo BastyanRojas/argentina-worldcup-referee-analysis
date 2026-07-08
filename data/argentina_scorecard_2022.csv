@@ -1,8 +1,8 @@
 metric,argentina_value,field_reference,favors_argentina,note
-Penalties won,5,"All-time record; no team ever exceeded 4",1,The single strongest pro-thesis signal
+Penalties won,5,"Tournament + all-time record; next best = 2",1,The single strongest pro-thesis signal
 Penalties per game,0.71,"Tournament baseline ~0.18-0.20",1,~3.5x the modern baseline
-Penalties per 100 shots,6.6,"France 2.2 on more shots",1,Not explained by attacking volume
-xG,11.8,"Tournament-leading (~1st)",0,High attacking output — a real confounder for penalties
-Shots,76,"France had MORE (92)",0,Argentina were NOT the most shot-happy team
+Penalties per 100 shots,5.2,"Tournament-leading; next best England 3.3; France 2.0",1,Not explained by attacking volume
+xG,10.02,"France higher (10.25); NOT the xG leader",0,Attacking output high but not the tournament's best
+Shots,96,"France had MORE (100)",0,Argentina were NOT the most shot-happy team
 Penalties conceded,2,"Baseline ~1.3 over 7 games",-1,Slightly ABOVE baseline; not shielded defensively
-Yellow cards,16,"Among tournament highest; record 18-card match vs NED",-1,Heavily carded — cuts against 'referees protect them'
+Yellow cards,17,"France 8; among tournament highest; record 18-card match vs NED",-1,Heavily carded — cuts against 'referees protect them'
